@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    Player playerScript;
+    [SerializeField] private Player playerScript;
 
     // public event EnemyToTheEnd;
 
     private void Awake()
     {
-        playerScript = Player.Instance;
+
+    }
+
+    private void Update()
+    {
+        // quel type de déplacement va-t-on utiliser?
     }
 }
