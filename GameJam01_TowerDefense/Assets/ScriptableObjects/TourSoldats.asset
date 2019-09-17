@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3e3f5d1475b4bb45b605869d0d2fce3, type: 3}
-  m_Name: Turret03
+  m_Name: TourSoldats
   m_EditorClassIdentifier: 
   name: Tour Soldats
   description: Tourelle Soldats!

@@ -55,8 +55,8 @@ public class Enemy : MonoBehaviour
         {
             // atteint la fin du parcours!
             Destroy(gameObject);
+            return;
         }
-
         waypointIndex++;
         target = WayPoints.points[waypointIndex];
     }

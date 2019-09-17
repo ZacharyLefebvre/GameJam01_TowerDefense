@@ -13,9 +13,9 @@ public class TurretDisplay : MonoBehaviour
     public TextMeshProUGUI turretName;
     public TextMeshProUGUI turretDescription;
 
+    public TextMeshProUGUI turretCost;
     public TextMeshProUGUI turretDamage;
     public TextMeshProUGUI turretRangeText;
-    public TextMeshProUGUI turretCost;
 
     public TextMeshProUGUI turretFireRate;
 
@@ -27,13 +27,13 @@ public class TurretDisplay : MonoBehaviour
         turretName.text = turretData.name;
         turretDescription.text = turretData.description;
 
-        turretDamage.text = turretData.damage.ToString();
+        turretDamage.text = "Damage : " + turretData.damage.ToString();
 
-        turretRangeText.text = turretData.range.ToString();
+        turretRangeText.text = "Range : " + turretData.range.ToString();
 
-        turretCost.text = turretData.cost.ToString();
+        turretCost.text = "Cost : " + turretData.cost.ToString();
 
-        turretFireRate.text = turretData.fireRate.ToString();
+        turretFireRate.text = "Fire Rate : " + turretData.fireRate.ToString();
 
         turretArtwork.sprite = turretData.artwork;
     }

@@ -9,39 +9,26 @@ public class Turret : MonoBehaviour
     #region Turret ScriptableObject Data
     public Turret_ScriptableObject turretData;
 
-    public TextMeshProUGUI turretName;
-    public TextMeshProUGUI turretDescription;
+    private int turretDamage;
+    private int turretRangeText;
+    private int turretCost;
 
-    public TextMeshProUGUI turretDamage;
-    public TextMeshProUGUI turretRangeText;
-    public TextMeshProUGUI turretCost;
-
-    public TextMeshProUGUI turretFireRate;
-
-    public Image turretArtwork;
+    private float turretFireRate;
     #endregion
 
     public string enemyTag = "Enemy";
 
-    private int turretRange;
+    private int turretRange = 5;
 
-    private Transform target = null;
+    public Transform target = null;
 
     void Awake ()
     {
-        turretName.text = turretData.name;
-        turretDescription.text = turretData.description;
-
-        turretDamage.text = "Damage : " + turretData.damage.ToString();
-
+        turretCost = turretData.cost;
+        turretDamage = turretData.damage;
         turretRange = turretData.range;
-        turretRangeText.text = "Range : " + turretRange.ToString();
 
-        turretCost.text = "Cost : " + turretData.cost.ToString();
-
-        turretFireRate.text = "FireRate : " + turretData.fireRate.ToString();
-
-        turretArtwork.sprite = turretData.artwork;
+        turretFireRate = turretData.fireRate;
     }
 
     private void Start()
@@ -56,7 +43,12 @@ public class Turret : MonoBehaviour
             return;
         }
 
-        transform.LookAt(target);
+        Vector2 dir = target.position - transform.position;
+        Quaternion lookRotation = Quaternion.LookRotation(dir);
+        Vector3 rotation = lookRotation.eulerAngles;
+        transform.rotation = Quaternion.Euler(0, 0, rotation.x + 90);
+        // transform.Rotate(, 0, 0);
+        
     }
 
     void UpdateTarget()
@@ -97,7 +89,7 @@ public class Turret : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.blue;
+        Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(transform.position, turretRange);
     }
 }

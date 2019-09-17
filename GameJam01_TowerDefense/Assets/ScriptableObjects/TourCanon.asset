@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3e3f5d1475b4bb45b605869d0d2fce3, type: 3}
-  m_Name: Turret01
+  m_Name: TourCanon
   m_EditorClassIdentifier: 
   name: Tour Canon
   description: Tourelle canon!
-  damage: 0
-  range: 0
-  cost: 0
-  fireRate: 0
-  artwork: {fileID: 0}
+  damage: 5
+  range: 10
+  cost: 5
+  fireRate: 3
+  artwork: {fileID: 21300000, guid: d096e8238fe976f4c828cdf7b1ea37bf, type: 3}
