@@ -11,8 +11,13 @@ public class Player : MonoBehaviour
 
 	}
 
-    public void DamagePlayer()
+    public void DamagePlayer(int damageTaken)
     {
+        playerHealth -= damageTaken;
 
+        if (playerHealth <= 0)
+        {
+            // créer un event?
+        }
     }
 }
