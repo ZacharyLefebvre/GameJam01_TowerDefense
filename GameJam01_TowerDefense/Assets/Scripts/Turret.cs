@@ -32,14 +32,14 @@ public class Turret : MonoBehaviour
         turretName.text = turretData.name;
         turretDescription.text = turretData.description;
 
-        turretDamage.text = turretData.damage.ToString();
+        turretDamage.text = "Damage : " + turretData.damage.ToString();
 
         turretRange = turretData.range;
-        turretRangeText.text = turretRange.ToString();
+        turretRangeText.text = "Range : " + turretRange.ToString();
 
-        turretCost.text = turretData.cost.ToString();
+        turretCost.text = "Cost : " + turretData.cost.ToString();
 
-        turretFireRate.text = turretData.fireRate.ToString();
+        turretFireRate.text = "FireRate : " + turretData.fireRate.ToString();
 
         turretArtwork.sprite = turretData.artwork;
     }

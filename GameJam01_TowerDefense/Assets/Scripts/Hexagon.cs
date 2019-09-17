@@ -69,6 +69,6 @@ public class Hexagon : MonoBehaviour
 
     public void DisplayTurretsUI()
     {
-
+        turretsUI.SetActive(true);
     }
 }
