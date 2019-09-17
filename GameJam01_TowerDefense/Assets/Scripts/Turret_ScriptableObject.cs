@@ -6,12 +6,16 @@ using UnityEngine;
 public class Turret_ScriptableObject : ScriptableObject
 {
     public new string name;
+    public string description;
 
     public int health;
     public int damage;
     public int range;
+    public int cost;
 
     public float fireRate;
+
+    public Sprite artwork;
 
     /*
     // à voir

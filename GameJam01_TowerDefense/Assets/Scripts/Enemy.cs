@@ -7,9 +7,10 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private Player playerScript;
 
+    #region Enemy ScriptableObject Data
     public Enemy_ScriptableObject enemyData;
 
-    public Text enemyNameText;
+    public Text enemyName;
     public Text enemyDescription;
 
     public Text enemyHealth;
@@ -20,10 +21,11 @@ public class Enemy : MonoBehaviour
     public Sprite enemyArtwork;
 
     public bool canFly;
+    #endregion
 
     private void Awake()
     {
-        enemyNameText.text = enemyData.name;
+        enemyName.text = enemyData.name;
         enemyDescription.text = enemyData.description;
 
         enemyCost.text = enemyData.cost.ToString();
