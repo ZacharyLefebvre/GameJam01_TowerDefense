@@ -16,6 +16,8 @@ public class Turret_ScriptableObject : ScriptableObject
 
     public Sprite artwork;
 
+    public bool aoe;
+
     /*
     // à voir
     public bool canFreeze;

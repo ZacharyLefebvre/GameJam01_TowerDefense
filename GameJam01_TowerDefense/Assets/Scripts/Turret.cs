@@ -9,16 +9,18 @@ public class Turret : MonoBehaviour
     #region Turret ScriptableObject Data
     public Turret_ScriptableObject turretData;
 
+    private int turretCost;
     private int turretDamage;
     private int turretRangeText;
-    private int turretCost;
+    private int turretRange = 5;
 
     private float turretFireRate;
+
+    private bool aoe;
     #endregion
 
     public string enemyTag = "Enemy";
 
-    private int turretRange = 5;
 
     public Transform target = null;
 
@@ -29,6 +31,8 @@ public class Turret : MonoBehaviour
         turretRange = turretData.range;
 
         turretFireRate = turretData.fireRate;
+
+        aoe = turretData.aoe;
     }
 
     private void Start()
@@ -43,12 +47,11 @@ public class Turret : MonoBehaviour
             return;
         }
 
+        // look at the right orientation
         Vector2 dir = target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
         Vector3 rotation = lookRotation.eulerAngles;
-        transform.rotation = Quaternion.Euler(0, 0, rotation.x + 90);
-        // transform.Rotate(, 0, 0);
-        
+        transform.rotation = Quaternion.Euler(0, 0, rotation.x + 90);   
     }
 
     void UpdateTarget()
@@ -82,14 +85,9 @@ public class Turret : MonoBehaviour
         }
     }
 
-    // public void LookTowardsTarget(Transform enemy)
-    // {
-    //     transform.LookAt(enemy.transform);
-    // }
-
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.white;
+        Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, turretRange);
     }
 }
