@@ -11,9 +11,6 @@ public class Enemy_ScriptableObject : ScriptableObject
     public int health;
     public int damage;
     public int speed;
-    public int cost;
-
-    public Sprite artwork;  
 
     public bool canFly;
 }

@@ -10,35 +10,55 @@ public class Enemy : MonoBehaviour
     #region Enemy ScriptableObject Data
     public Enemy_ScriptableObject enemyData;
 
-    public Text enemyName;
-    public Text enemyDescription;
+    // public Text enemyName;
+    // public Text enemyDescription;
 
-    public Text enemyHealth;
-    public Text enemyDamage;
-    public Text enemySpeed;
-    public Text enemyCost;
-
-    public Image enemyArtwork;
+    private int health;
+    private int damage;
+    private int speed;
 
     public bool canFly;
     #endregion
 
+    private Transform target;
+    private int waypointIndex = 0;
+
     private void Awake()
     {
-        enemyName.text = enemyData.name;
-        enemyDescription.text = enemyData.description;
-
-        enemyCost.text = enemyData.cost.ToString();
-        enemyHealth.text = enemyData.health.ToString();
-        enemySpeed.text = enemyData.damage.ToString();
-
-        enemyArtwork.sprite = enemyData.artwork;
+        health = enemyData.health;
+        damage = enemyData.damage;
+        speed = enemyData.speed;
 
         canFly = enemyData.canFly;
     }
 
+    private void Start()
+    {
+        target = WayPoints.points[0];
+    }
+
     private void Update()
     {
-        // quel type de déplacement va-t-on utiliser?
+        Vector3 dir = target.position - transform.position;
+        transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
+
+        if (Vector3.Distance(transform.position, target.position) <= 0.1f )
+        {
+            Debug.Log("objectif atteint");
+            GoToNextWaypoint();
+        }
+    }
+
+    private void GoToNextWaypoint()
+    {
+        if (waypointIndex >= WayPoints.points.Length - 1)
+        {
+            // atteint la fin du parcours!
+            Destroy(gameObject);
+            return;
+        }
+
+        waypointIndex++;
+        target = WayPoints.points[waypointIndex];
     }
 }
