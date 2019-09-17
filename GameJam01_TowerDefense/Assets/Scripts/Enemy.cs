@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
     public Text enemySpeed;
     public Text enemyCost;
 
-    public Sprite enemyArtwork;
+    public Image enemyArtwork;
 
     public bool canFly;
     #endregion
@@ -32,7 +32,7 @@ public class Enemy : MonoBehaviour
         enemyHealth.text = enemyData.health.ToString();
         enemySpeed.text = enemyData.damage.ToString();
 
-        enemyArtwork = enemyData.artwork;
+        enemyArtwork.sprite = enemyData.artwork;
 
         canFly = enemyData.canFly;
     }

@@ -2,30 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Turret : MonoBehaviour
 {
     #region Turret ScriptableObject Data
     public Turret_ScriptableObject turretData;
 
-    public Text turretName;
-    public Text turretDescription;
+    public TextMeshProUGUI turretName;
+    public TextMeshProUGUI turretDescription;
 
-    public Text turretHealth;
-    public Text turretDamage;
-    public Text turretRangeText;
-    public Text turretCost;
+    public TextMeshProUGUI turretDamage;
+    public TextMeshProUGUI turretRangeText;
+    public TextMeshProUGUI turretCost;
 
-    public Text turretFireRate;
+    public TextMeshProUGUI turretFireRate;
 
-    public Sprite turretArtwork;
+    public Image turretArtwork;
     #endregion
 
     public string enemyTag = "Enemy";
 
     private int turretRange;
 
-    public Transform target = null;
+    private Transform target = null;
 
     void Awake ()
     {
@@ -41,7 +41,7 @@ public class Turret : MonoBehaviour
 
         turretFireRate.text = turretData.fireRate.ToString();
 
-        turretArtwork = turretData.artwork;
+        turretArtwork.sprite = turretData.artwork;
     }
 
     private void Start()
