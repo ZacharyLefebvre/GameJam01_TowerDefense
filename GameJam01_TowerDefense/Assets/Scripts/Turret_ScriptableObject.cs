@@ -10,7 +10,9 @@ public class Turret_ScriptableObject : ScriptableObject
 
     public int damage;
     public int range;
-    public int cost;
+    public int costLvl1;
+    public int costLvl2;
+    public int costLvl3;
 
     public float fireRate;
 

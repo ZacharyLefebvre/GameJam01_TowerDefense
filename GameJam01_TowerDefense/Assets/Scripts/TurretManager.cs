@@ -8,6 +8,10 @@ public class TurretManager : MonoBehaviour
     [SerializeField] private GameObject turret02;
     [SerializeField] private GameObject turret03;
 
+    [SerializeField] private Turret_ScriptableObject turret1Data;
+    [SerializeField] private Turret_ScriptableObject turret2Data;
+    [SerializeField] private Turret_ScriptableObject turret3Data;
+
     public GameObject currentHexagon = null;
 
     public void PutTurret01()
@@ -25,7 +29,7 @@ public class TurretManager : MonoBehaviour
     public void PutTurret02()
     {
         if (currentHexagon != null)
-            Instantiate(turret01, currentHexagon.transform.position, currentHexagon.transform.rotation);
+            Instantiate(turret02, currentHexagon.transform.position, currentHexagon.transform.rotation);
         else
             Debug.Log("PROBLEME");
     }
@@ -33,7 +37,7 @@ public class TurretManager : MonoBehaviour
     public void PutTurret03()
     {
         if (currentHexagon != null)
-            Instantiate(turret01, currentHexagon.transform.position, currentHexagon.transform.rotation);
+            Instantiate(turret03, currentHexagon.transform.position, currentHexagon.transform.rotation);
         else
             Debug.Log("PROBLEME");
     }

@@ -31,7 +31,7 @@ public class TurretDisplay : MonoBehaviour
 
         turretRangeText.text = "Range : " + turretData.range.ToString();
 
-        turretCost.text = "Cost : " + turretData.cost.ToString();
+        turretCost.text = "Cost : " + turretData.costLvl1.ToString();
 
         turretFireRate.text = "Fire Rate : " + turretData.fireRate.ToString();
 

@@ -26,7 +26,7 @@ public class Turret : MonoBehaviour
 
     void Awake ()
     {
-        turretCost = turretData.cost;
+        turretCost = turretData.costLvl1;
         turretDamage = turretData.damage;
         turretRange = turretData.range;
 
