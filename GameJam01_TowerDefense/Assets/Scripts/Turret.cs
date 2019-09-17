@@ -13,7 +13,7 @@ public class Turret : MonoBehaviour
 
     public Text turretHealth;
     public Text turretDamage;
-    public Text turretSpeed;
+    public Text turretRangeText;
     public Text turretCost;
 
     public Text turretFireRate;
@@ -21,14 +21,22 @@ public class Turret : MonoBehaviour
     public Sprite turretArtwork;
     #endregion
 
+    public string enemyTag = "Enemy";
+
+    private int turretRange;
+
+    public Transform target = null;
+
     void Awake ()
     {
         turretName.text = turretData.name;
         turretDescription.text = turretData.description;
 
-        turretHealth.text = turretData.health.ToString();
         turretDamage.text = turretData.damage.ToString();
-        turretSpeed.text = turretData.damage.ToString();
+
+        turretRange = turretData.range;
+        turretRangeText.text = turretRange.ToString();
+
         turretCost.text = turretData.cost.ToString();
 
         turretFireRate.text = turretData.fireRate.ToString();
@@ -36,9 +44,60 @@ public class Turret : MonoBehaviour
         turretArtwork = turretData.artwork;
     }
 
+    private void Start()
+    {
+        InvokeRepeating("UpdateTarget", 0, .5f);
+    }
+
     private void Update()
     {
-        // find enemies in range
-        // watch the closest one and attack/damage him
+        if (target == null)
+        {
+            return;
+        }
+
+        transform.LookAt(target);
+    }
+
+    void UpdateTarget()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+        float shortestDistance = Mathf.Infinity;
+
+        GameObject nearestEnemy = null;
+
+        foreach(GameObject enemy in enemies)
+        {
+            float enemyDistance = Vector2.Distance(transform.position, enemy.transform.position);
+
+            if (enemyDistance < shortestDistance)
+            {
+                shortestDistance = enemyDistance;
+                nearestEnemy = enemy;
+            }
+        }
+
+        // if enemy found && he is in range of the turret
+        if (nearestEnemy != null && shortestDistance <= turretRange)
+        {
+            target = nearestEnemy.transform;
+            // LookTowardsTarget(target);
+        }
+        else
+        {
+            // évite que la tourelle regarde l'enemy qui sort de sa range
+            target = null;
+        }
+    }
+
+    // public void LookTowardsTarget(Transform enemy)
+    // {
+    //     transform.LookAt(enemy.transform);
+    // }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, turretRange);
     }
 }
