@@ -8,6 +8,7 @@ public class UICanceler : MonoBehaviour
 
     private void OnMouseDown()
     {
+        Debug.Log("Vire moi l'UI PUTAIN");
         TurretsUI.SetActive(false);
     }
 }

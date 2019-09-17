@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Hexagon : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class Hexagon : MonoBehaviour
     private Color hexInitialColor;
     public Color greenColor;
     public Color redColor;
+    public Color hasTurretColor;
 
     private Renderer rend;
 
@@ -58,17 +60,22 @@ public class Hexagon : MonoBehaviour
         }
         else
         {
-            hexMat.color = Color.red;
+            hexMat.color = redColor;
         }
     }
 
     private void OnMouseExit()
     {
         rend.enabled = false;
-    }
+    }    
 
     public void DisplayTurretsUI()
     {
         turretsUI.SetActive(true);
+    }
+
+    private void HasTurret()
+    {
+        hexMat.color = hasTurretColor;
     }
 }

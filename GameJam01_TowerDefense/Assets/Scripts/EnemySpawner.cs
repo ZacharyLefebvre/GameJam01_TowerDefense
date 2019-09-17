@@ -10,7 +10,7 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
-        
+        Instantiate(enemy01, transform.position, transform.rotation);
     }
 
     void Update()
