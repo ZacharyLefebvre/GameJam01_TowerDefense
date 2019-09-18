@@ -20,13 +20,12 @@ public class WaveGenerator : MonoBehaviour
     private float StartTime;
     private int currentWave = 1;
     private int DisplayTime;
-    private bool LastWaveFinished = true;
+    private bool LastWaveFinished = false;
     private bool TimerIsFinished = true;
 
     void Start()
     {
         StartTime = Time.time;
-        LastWaveFinished = false;
         SpawnEnemy();
     }
 
@@ -34,7 +33,6 @@ public class WaveGenerator : MonoBehaviour
     {
         if (currentWave < NbrOfWave)
         {
-            Debug.Log(currentWave);
             if (LastWaveFinished)
             {
                 LastWaveFinished = false;
@@ -59,7 +57,7 @@ public class WaveGenerator : MonoBehaviour
         }
         else
         {
-            int enemyID = Random.Range(0, 4);
+            int enemyID = Random.Range(0, Enemy.Count);
             StartCoroutine(SpawnSeveralEnemy(enemyID));
             
         }
@@ -72,10 +70,8 @@ public class WaveGenerator : MonoBehaviour
             yield return new WaitForSeconds(1f);
             DisplayTime -= 1;
             //mettre à jour le timer en HUD
-            Debug.Log("inTimer");
         }
             TimerIsFinished = true;
-        Debug.Log("Outoftimer");
         //désafficher le timer
     }
 
