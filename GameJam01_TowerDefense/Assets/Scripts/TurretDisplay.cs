@@ -18,8 +18,6 @@ public class TurretDisplay : MonoBehaviour
     public TextMeshProUGUI turretRangeText;
 
     public TextMeshProUGUI turretFireRate;
-
-    public Image turretArtwork;
     #endregion
 
     void Awake()
@@ -27,14 +25,12 @@ public class TurretDisplay : MonoBehaviour
         turretName.text = turretData.name;
         turretDescription.text = turretData.description;
 
-        turretDamage.text = "Damage : " + turretData.damage.ToString();
+        turretDamage.text = "Damage : " + turretData.damageLvl1.ToString();
 
-        turretRangeText.text = "Range : " + turretData.range.ToString();
+        turretRangeText.text = "Range : " + turretData.rangeLvl1.ToString();
 
         turretCost.text = "Cost : " + turretData.costLvl1.ToString();
 
-        turretFireRate.text = "Fire Rate : " + turretData.fireRate.ToString();
-
-        turretArtwork.sprite = turretData.artwork;
+        turretFireRate.text = "FireRate : " + turretData.fireRateLvl1.ToString() + " /s";
     }
 }

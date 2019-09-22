@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class UICanceler : MonoBehaviour
 {
-    [SerializeField] private GameObject TurretsUI;
+    [SerializeField] public GameObject HiddenUI;
 
     private void OnMouseDown()
     {
         Debug.Log("Vire moi l'UI PUTAIN");
-        TurretsUI.SetActive(false);
+        HiddenUI.SetActive(false);
     }
 }

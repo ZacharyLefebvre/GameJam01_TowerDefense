@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class WaveGenerator : MonoBehaviour
 {
+    public static WaveGenerator Instance { get; private set; }
+
     public Transform SpawnPoint;
     public List<GameObject> Enemy = new List<GameObject>();
     public GameObject Boss1;
@@ -23,29 +25,49 @@ public class WaveGenerator : MonoBehaviour
     private bool LastWaveFinished = false;
     private bool TimerIsFinished = true;
 
+    private bool canStartSpawning = false;
+
+    public string enemyTag = "Enemy";
+
+    [SerializeField] private GameObject UI_Victory;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     void Start()
     {
         StartTime = Time.time;
-        SpawnEnemy();
     }
 
     void Update()
     {
-        if (currentWave < NbrOfWave)
+        if (canStartSpawning)
         {
-            if (LastWaveFinished)
+            if (currentWave < NbrOfWave)
             {
-                LastWaveFinished = false;
-                DisplayTime = AnticipationTime;
-                StartCoroutine(Timer());
+                if (LastWaveFinished)
+                {
+                    LastWaveFinished = false;
+                    DisplayTime = AnticipationTime;
+                    StartCoroutine(Timer());
 
+                }
+                if (TimerIsFinished)
+                {
+                    TimerIsFinished = false;
+                    SpawnEnemy();
+                }
             }
-            if (TimerIsFinished)
+            else
             {
-                TimerIsFinished = false;
-                SpawnEnemy();
+                GameObject checkEnemyLeft = GameObject.FindGameObjectWithTag(enemyTag);
+                if (checkEnemyLeft != null)
+                {
+                    UI_Victory.SetActive(true);
+                }
             }
-     
         }
     }
 
@@ -58,8 +80,7 @@ public class WaveGenerator : MonoBehaviour
         else
         {
             int enemyID = Random.Range(0, Enemy.Count);
-            StartCoroutine(SpawnSeveralEnemy(enemyID));
-            
+            StartCoroutine(SpawnSeveralEnemy(enemyID));      
         }
     }
 
@@ -75,20 +96,19 @@ public class WaveGenerator : MonoBehaviour
         //désafficher le timer
     }
 
-    //IEnumerator WaveIsTurning()
-    //{
-    //    yield return new WaitForSeconds(WaveTurningTime);
-    //    NextWaveCanCome = true;
-    //}
-
     IEnumerator SpawnSeveralEnemy(int EnemyID)
     {
         for (int i = NbrOfEnemyFirstWave * (int)Mathf.Round(Mathf.Pow(RatioNbrOfEnemyBetweenTwoWave, currentWave)); i > 0; i--)
         {
-        yield return new WaitForSeconds(TimeBetweenTwoEnemy);
-        Instantiate(Enemy[EnemyID], SpawnPoint);
+            yield return new WaitForSeconds(TimeBetweenTwoEnemy);
+            Instantiate(Enemy[EnemyID], SpawnPoint);
         }
         LastWaveFinished = true;
         currentWave++;
+    }
+
+    public void CanStartSpawning()
+    {
+        canStartSpawning = true;
     }
 }
